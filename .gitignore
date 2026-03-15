@@ -1,2 +1,11 @@
 .venv
 env
+
+data/
+artifacts/
+mlruns/
+models/
+*.pkl
+*.joblib
+*.xgb
+mlflow.db
