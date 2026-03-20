@@ -1,0 +1,8 @@
+{
+  "path": "path_b",
+  "threshold": 0.5,
+  "embedding_model": "all-MiniLM-L6-v2",
+  "embedding_dims": 384,
+  "feature_dims": 455,
+  "best_iteration": 209
+}
