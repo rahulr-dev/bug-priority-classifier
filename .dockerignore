@@ -11,9 +11,6 @@ data/
 mlruns/
 mlflow.db
 
-# Artifacts (mount as volumes instead)
-artifacts/
-
 # Notebooks (not needed for serving)
 notebooks/
 
