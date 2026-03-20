@@ -4,7 +4,4 @@ __pycache__
 
 data/
 mlruns/
-*.pkl
-*.joblib
-*.xgb
 mlflow.db
