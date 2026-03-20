@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+env/
+*.egg-info/
+
+# Data (large files — mount as volumes instead)
+data/
+mlruns/
+mlflow.db
+
+# Artifacts (mount as volumes instead)
+artifacts/
+
+# Notebooks (not needed for serving)
+notebooks/
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Env files
+.env
