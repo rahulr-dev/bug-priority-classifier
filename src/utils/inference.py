@@ -34,14 +34,23 @@ def load_artifacts():
     return _ohe, _scaler, _embedding_model
 
 
-def load_model():
+# def load_model():
+#     global _model
+#     if _model is None:
+#         mlflow.set_tracking_uri(
+#             "sqlite:///D:/Projects/Machine Learning/bug-priority-classifier/mlflow.db"
+#         )
+#         _model = mlflow.xgboost.load_model("models:/XGBoostModel@champion")
+#         print("Loaded model..")
+#     return _model
+
+
+def load_local_model():
     global _model
     if _model is None:
-        mlflow.set_tracking_uri(
-            "sqlite:///D:/Projects/Machine Learning/bug-priority-classifier/mlflow.db"
-        )
-        _model = mlflow.xgboost.load_model("models:/XGBoostModel@champion")
+        _model = joblib.load(os.path.join(ARTIFACT_DIR, "final_xgboost_path_b.pkl"))
         print("Loaded model..")
+
     return _model
 
 
@@ -139,7 +148,8 @@ def predict(bug: BugData) -> tuple[Prediction, float]:
     start = time.perf_counter()
 
     x = build_features(bug)
-    model = load_model()
+    model = load_local_model()
+    print(model)
     probability = float(model.predict_proba(x)[0, 1])
     prediction = 0 if probability < THRESHOLD else 1
     label = "Low Priority" if prediction == 0 else "High Priority"
@@ -154,7 +164,7 @@ def predict_batch(bugs: list[BugData]) -> tuple[list[Prediction], float]:
     start = time.perf_counter()
 
     x = build_features_batch(bugs)
-    model = load_model()
+    model = load_local_model()
     probabilities = model.predict_proba(x)[:, 1]
 
     results = []
