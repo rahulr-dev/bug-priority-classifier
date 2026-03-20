@@ -9,7 +9,6 @@ Predicts whether an Eclipse bug report is High Priority (P1/P2) or Low Priority 
 ## Run with Docker
 
 ```bash
-cp .env.example .env
 docker-compose up --build
 ```
 
