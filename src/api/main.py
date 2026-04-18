@@ -14,8 +14,17 @@ def health_check():
 
 @app.post("/predict")
 def predict_priority(bug: BugData):
-    result, elapsed_ms = predict(bug)
-    return {"prediction": result, "inference_time_ms": elapsed_ms}
+    result, elapsed_ms, explanation = predict(bug)
+    # We return explanation as a raw dict for now, 
+    # but we could wrap it in a proper response model if needed.
+    return {
+        "prediction": result, 
+        "inference_time_ms": elapsed_ms,
+        "explanation_summary": {
+            "base_value": float(explanation["base_value"]),
+            "top_features": explanation["feature_names"][:5] # Just a sample
+        }
+    }
 
 
 @app.post("/predict/batch")
